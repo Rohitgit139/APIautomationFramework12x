@@ -1,4 +1,4 @@
-package com.testingacademy.Pojos.Requestpojo;
+package com.testingacademy.Pojos.Responsepojo;
 
 import com.testingacademy.PayloadManagement.Class.Tools.requestpojos.Bookingss;
 
