@@ -1,6 +1,8 @@
 package com.testingacademy.Pojos.Responsepojo;
 
-import com.testingacademy.PayloadManagement.Class.Tools.requestpojos.Bookingss;
+
+
+import com.testingacademy.Pojos.Requestpojo.Bookingss;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
