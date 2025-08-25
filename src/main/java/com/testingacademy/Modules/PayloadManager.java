@@ -2,9 +2,14 @@ package com.testingacademy.Modules;
 
 import com.github.javafaker.Faker;
 import com.google.gson.Gson;
+import com.testingacademy.Pojos.Requestpojo.LoginRequest;
+import com.testingacademy.Pojos.Requestpojo.auth;
 import com.testingacademy.Pojos.Requestpojo.Bookingdates;
 import com.testingacademy.Pojos.Requestpojo.Bookingss;
 import com.testingacademy.Pojos.Responsepojo.Bookingresponse01;
+import com.testingacademy.Pojos.Responsepojo.Invalidresponse;
+import com.testingacademy.Pojos.Responsepojo.LoginResponse;
+import com.testingacademy.Pojos.Responsepojo.Tokenresponse;
 
 public class PayloadManager {
 
@@ -77,6 +82,8 @@ public class PayloadManager {
         return gson.fromJson(responseString, Bookingss.class);
     }
 
+
+
     public String createPayloadBookingFakerJS() {
         Bookingss booking = new Bookingss();
         booking.setFirstname(faker.name().firstName());
@@ -92,4 +99,58 @@ public class PayloadManager {
 
         return gson.toJson(booking);
     }
+////serlization
+
+    public String Set_Authpayload() {
+        auth auth = new auth();
+        auth.setUsername("admin");
+        auth.setPassword("password123");
+
+
+        String jsonPayloadString = gson.toJson(auth);
+        System.out.println("pay load set to the -->" + jsonPayloadString);
+        return jsonPayloadString;
+    }
+
+        //deserlization
+        public String GettokenfromJSON(String tokenResponse){
+
+            Tokenresponse tokenresponse1=gson.fromJson(tokenResponse, Tokenresponse.class);
+                    return tokenresponse1.getToken();
+        }
+    //deserlization
+    public String GetInvalidresponse(String Invalidresponse){
+
+
+        Invalidresponse tokenresponse1=gson.fromJson(Invalidresponse, Invalidresponse.class);
+        return tokenresponse1.getReason();
+    }
+
+
+    public String setLoginData(){
+
+
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("contact+aug@thetestingacademy.com");
+        loginRequest.setPassword("TtxkgQ!s$rJBk85");
+        loginRequest.setRemember(false);
+        loginRequest.setRecaptchaResponseField("");
+
+
+
+        String jsonPayloadString = gson.toJson(loginRequest);
+        System.out.println("Payload Login to the -> " + jsonPayloadString);
+        return jsonPayloadString;
+
+    }
+
+    // DeSer ( JSON String -> Java Object
+    public LoginResponse getLoginData(String loginResponseEx){
+
+        LoginResponse loginResponse = gson.fromJson(loginResponseEx, LoginResponse.class);
+        return  loginResponse;
+    }
 }
+
+
+

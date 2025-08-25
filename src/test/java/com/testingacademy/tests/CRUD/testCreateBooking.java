@@ -70,13 +70,26 @@ public class testCreateBooking extends BaseTest {
         assertActions.verifyStringKeyNotNull(bookingResponse.getBookingid());
         assertActions.verifyStringKeyNotNull(bookingResponse.getBooking().getFirstname());
 
-
-
-
-
     }
+    @Test(groups = "reg", priority = 1)
+    @Owner("Rohit Gaikwad")
+    @Description("TC#1 - Verify that the Booking can be Created, When Payload is Random")
+    public void testcreatebookingwithfaker() {
+
+
+        requestSpecification.basePath(APIconstants.CREATE_UPDATE_BOOKING_URL);
+        response = RestAssured.given(requestSpecification).when().
+                body(payloadManager.createPayloadBookingFakerJS()).log().all().post();
+
+        validatableResponse  = response.then().log().all();
+        validatableResponse.statusCode(200);
+        Bookingresponse01 bookingResponse = payloadManager.bookingResponseJava(response.asString());
+        assertActions.verifyStatusCode(response, 200);
+        assertActions.verifyStringKeyNotNull(bookingResponse.getBookingid());
+        assertActions.verifyStringKeyNotNull(bookingResponse.getBooking().getFirstname());
 
 
 
-}
+
+    }}
 
